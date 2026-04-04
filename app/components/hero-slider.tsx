@@ -163,7 +163,7 @@ export function HeroSlider() {
                           ? "#security"
                           : "#audit-logs"
                     }
-                    className="rounded-full bg-[#03BDE9] px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-[#1fd2fc]"
+                    className="rounded-full bg-[#03BDE9] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1fd2fc]"
                   >
                     {slide.primaryCta}
                   </Link>
