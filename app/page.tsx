@@ -2,9 +2,8 @@ import Image from "next/image";
 import { HeroSlider } from "./components/hero-slider";
 import { SiteFooter } from "./components/site-footer";
 import { SiteNavbar } from "./components/site-navbar";
-import estateManagementPreview from "../public/role-previews/estate-management-preview.png";
 import guardPreview from "../public/role-previews/guard-preview.png";
-import residentsPreview from "../public/role-previews/residents-preview.png";
+import mobilePreview from "../public/mobile-preview.svg";
 
 const roleSections = [
   {
@@ -19,12 +18,17 @@ const roleSections = [
       "Receive live check-in and rejection notifications for each visit.",
       "Keep a searchable history of recent visitors for added visibility.",
     ],
-    image: residentsPreview,
+    image: mobilePreview,
     imageAlt:
-      "Resident mobile app preview showing visitor pass creation, scheduled access windows, and arrival updates.",
+      "Resident mobile app preview showing subscription details, access code generation, and visitor activity history.",
     accent: "from-sky-400/60 via-cyan-100/80 to-white",
     dot: "bg-sky-500",
     surface: "border-sky-100 bg-sky-50/70",
+    previewPanelClass:
+      "bg-[linear-gradient(180deg,rgba(224,242,254,0.85),rgba(255,255,255,0.98))]",
+    previewFrameClass: "aspect-[4/5] sm:aspect-[3/4]",
+    previewImageClass:
+      "object-contain p-4 sm:p-6 transition duration-500 group-hover:scale-[1.02]",
   },
   {
     label: "Guard tools",
@@ -44,6 +48,10 @@ const roleSections = [
     accent: "from-indigo-400/60 via-indigo-100/80 to-white",
     dot: "bg-indigo-500",
     surface: "border-indigo-100 bg-indigo-50/70",
+    previewPanelClass: "",
+    previewFrameClass: "aspect-[4/3]",
+    previewImageClass:
+      "object-cover transition duration-500 group-hover:scale-[1.03]",
   },
   {
     label: "Admin dashboard",
@@ -57,12 +65,17 @@ const roleSections = [
       "Review complete audit trails for approvals, rejections, and timestamps.",
       "Track operational trends across multiple estates from a single view.",
     ],
-    image: estateManagementPreview,
+    image: "/admin-preview.svg",
     imageAlt:
-      "Estate management dashboard preview showing guard assignment panels, live alerts, and gate activity analytics across estates.",
+      "Estate management dashboard preview showing resident and verifier account summaries, activity logs, and admin controls.",
     accent: "from-emerald-400/60 via-emerald-100/80 to-white",
     dot: "bg-emerald-500",
     surface: "border-emerald-100 bg-emerald-50/70",
+    previewPanelClass:
+      "bg-[linear-gradient(180deg,rgba(220,252,231,0.72),rgba(255,255,255,0.98))]",
+    previewFrameClass: "aspect-[16/10]",
+    previewImageClass:
+      "object-contain p-3 sm:p-4 transition duration-500 group-hover:scale-[1.02]",
   },
 ] as const;
 
@@ -146,9 +159,6 @@ export default function Home() {
         <section className="rounded-[1.75rem] border border-zinc-300 bg-white p-6 md:p-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
-                Role experiences
-              </p>
               <h2 className="mt-2 text-2xl font-semibold leading-tight md:text-[2rem]">
                 Dedicated experiences for residents, guards, and estate teams
               </h2>
@@ -211,14 +221,21 @@ export default function Home() {
                         </span>
                       </div>
 
-                      <div className="relative overflow-hidden rounded-[1.1rem] border border-white/80 bg-white shadow-[0_16px_50px_-30px_rgba(15,23,42,0.5)]">
-                        <div className="relative aspect-[4/3]">
+                      <div
+                        className={`relative overflow-hidden rounded-[1.1rem] border border-white/80 bg-white shadow-[0_16px_50px_-30px_rgba(15,23,42,0.5)] ${role.previewPanelClass ?? ""}`}
+                      >
+                        <div
+                          className={`relative ${role.previewFrameClass ?? "aspect-[4/3]"}`}
+                        >
                           <Image
                             src={role.image}
                             alt={role.imageAlt}
                             fill
                             sizes="(max-width: 639px) 100vw, (max-width: 1279px) 40vw, 26vw"
-                            className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                            className={
+                              role.previewImageClass ??
+                              "object-cover transition duration-500 group-hover:scale-[1.03]"
+                            }
                           />
                         </div>
                       </div>
