@@ -1,4 +1,5 @@
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const navItems = [
@@ -19,17 +20,19 @@ export function SiteNavbar() {
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 rounded-[2rem] border border-white/60 bg-white/80 px-4 py-4 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur xl:px-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#03BDE9] text-lg font-bold text-slate-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]">
-              S
-            </div>
-            <div>
-              <Link
-                href="/"
-                className="text-lg font-semibold tracking-tight text-slate-950"
-              >
-                Sycure
-              </Link>
-            </div>
+            <Link
+              href="/"
+              className="flex items-center rounded-2xl px-1 py-1 transition hover:opacity-90"
+              aria-label="Sycure home"
+            >
+              <Image
+                src="/sycureLogo.svg"
+                alt="Sycure logo"
+                width={160}
+                height={40}
+                className="h-9 w-auto sm:h-10"
+              />
+            </Link>
           </div>
 
           <nav className="flex flex-wrap items-center gap-2 lg:justify-center">

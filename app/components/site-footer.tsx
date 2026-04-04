@@ -1,4 +1,5 @@
 import { KeyRound, LayoutDashboard, ScanLine, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const solutionGroups = [
@@ -105,14 +106,17 @@ export function SiteFooter() {
       <div className="grid gap-8 px-6 py-8 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#03BDE9] text-lg font-bold text-slate-950">
-              S
-            </div>
             <div>
-              <p className="text-lg font-semibold">Sycure</p>
-              <p className="text-sm text-slate-400">
+              <Image
+                src="/sycureLogoWhite.svg"
+                alt="Sycure logo"
+                width={160}
+                height={40}
+                className="h-10 w-auto"
+              />
+              {/* <p className="text-sm text-slate-400 mt-4">
                 Generate once. Verify instantly.
-              </p>
+              </p> */}
             </div>
           </div>
 
