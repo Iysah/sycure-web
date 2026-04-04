@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 
 const navItems = [
@@ -50,9 +51,7 @@ export function SiteNavbar() {
             <details className="group relative">
               <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950">
                 Platforms
-                <span className="text-xs text-slate-400 transition group-open:rotate-180">
-                  v
-                </span>
+                <ChevronDown className="h-4 w-4 text-slate-400 transition group-open:rotate-180" />
               </summary>
               <div className="absolute left-0 top-full z-30 mt-2 min-w-56 rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
                 {platformItems.map((item) => (
@@ -82,23 +81,6 @@ export function SiteNavbar() {
               Request Demo
             </Link>
           </div>
-        </div>
-
-        <div className="flex flex-col gap-3 border-t border-slate-200 pt-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-[#03BDE9]/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#0287A8]">
-              Platform
-            </span>
-            {productPills.map((pill) => (
-              <span
-                key={pill}
-                className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600"
-              >
-                {pill}
-              </span>
-            ))}
-          </div>
-
         </div>
       </div>
     </header>
