@@ -7,12 +7,6 @@ const navItems = [
   { label: "Security", href: "#security" },
 ];
 
-const productPills = [
-  "Resident mobile app",
-  "Verifier mobile app",
-  "Estate owner dashboard",
-];
-
 const platformItems = [
   { label: "Resident mobile app", href: "#solutions" },
   { label: "Verifier mobile app", href: "#solutions" },
