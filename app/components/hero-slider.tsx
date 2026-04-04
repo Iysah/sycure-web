@@ -193,7 +193,7 @@ export function HeroSlider() {
                   </div>
 
                   <div className="space-y-4">
-                    <div className="rounded-[1.25rem] bg-slate-950 p-4 text-white">
+                    {/* <div className="rounded-[1.25rem] bg-slate-950 p-4 text-white">
                       <div className="mb-3 flex items-center justify-between">
                         <span className="text-sm font-semibold">
                           {slide.label}
@@ -206,7 +206,7 @@ export function HeroSlider() {
                         <div className="h-2 w-24 rounded-full bg-white/20" />
                         <div className="h-2 w-40 rounded-full bg-white/15" />
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="grid gap-3 sm:grid-cols-[0.95fr_1.05fr]">
                       <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
@@ -252,7 +252,7 @@ export function HeroSlider() {
                   </div>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-3">
+                {/* <div className="grid gap-3 sm:grid-cols-3">
                   {slides.map((item, itemIndex) => (
                     <div
                       key={item.id}
@@ -270,7 +270,7 @@ export function HeroSlider() {
                       </p>
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
             </div>
           </article>

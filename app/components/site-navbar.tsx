@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +19,7 @@ export function SiteNavbar() {
     <header className="sticky top-4 z-20">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 rounded-[2rem] border border-white/60 bg-white/80 px-4 py-4 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur xl:px-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-3 lg:flex-none">
             <Link
               href="/"
               className="flex items-center rounded-2xl px-1 py-1 transition hover:opacity-90"
@@ -33,9 +33,62 @@ export function SiteNavbar() {
                 className="h-9 w-auto sm:h-10"
               />
             </Link>
+
+            <details className="group relative lg:hidden">
+              <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50">
+                <Menu className="h-4 w-4" />
+                Menu
+              </summary>
+
+              <div className="absolute right-0 top-full z-30 mt-3 w-[min(22rem,calc(100vw-2rem))] rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
+                <div className="space-y-1">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="block rounded-xl px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-slate-950"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="mt-3 rounded-2xl bg-slate-50 p-3">
+                  <p className="px-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    Platforms
+                  </p>
+                  <div className="mt-2 space-y-1">
+                    {platformItems.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="block rounded-xl px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-3 grid gap-2">
+                  <Link
+                    href="#contact"
+                    className="rounded-full border border-slate-200 px-4 py-3 text-center text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                  >
+                    Talk to Sales
+                  </Link>
+                  <Link
+                    href="#solutions"
+                    className="rounded-full bg-[#03BDE9] px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#029fc3]"
+                  >
+                    Request Demo
+                  </Link>
+                </div>
+              </div>
+            </details>
           </div>
 
-          <nav className="flex flex-wrap items-center gap-2 lg:justify-center">
+          <nav className="hidden flex-wrap items-center gap-2 lg:flex lg:justify-center">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -64,7 +117,7 @@ export function SiteNavbar() {
             </details>
           </nav>
 
-          <div className="flex flex-wrap items-center gap-3 lg:justify-end">
+          <div className="hidden flex-wrap items-center gap-3 lg:flex lg:justify-end">
             <Link
               href="#contact"
               className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"

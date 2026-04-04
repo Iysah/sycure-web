@@ -47,7 +47,7 @@ export function SiteFooter() {
       className="overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-[0_24px_80px_rgba(15,23,42,0.25)]"
     >
       <div className="border-b border-white/10 bg-[radial-gradient(circle_at_top_left,_rgba(3,189,233,0.28),_transparent_40%),linear-gradient(180deg,_rgba(15,23,42,0.92),_rgba(2,6,23,1))] px-6 py-8 sm:px-8">
-        <div className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr] mb-8">
           <div className="space-y-5">
             <span className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#7DE9FF]">
               Sycure Platform
@@ -104,7 +104,7 @@ export function SiteFooter() {
       </div>
 
       <div className="grid gap-8 px-6 py-8 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
-        <div className="space-y-4">
+        <div className="space-y-4 mb-8">
           <div className="flex items-center gap-3">
             <div>
               <Image
@@ -125,17 +125,6 @@ export function SiteFooter() {
             that want faster entries, stronger security, and complete digital
             accountability.
           </p>
-
-          <div className="flex flex-wrap gap-2">
-            {["Resident app", "Verifier app", "Owner dashboard"].map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-slate-300"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-3">
@@ -156,11 +145,9 @@ export function SiteFooter() {
 
       <div className="flex flex-col gap-4 border-t border-white/10 px-6 py-5 text-sm text-slate-400 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
         <p>Designed for gated estates, secure visitor approvals, and digital gate operations.</p>
-        <div className="flex flex-wrap gap-4">
-          <span>Resident mobile</span>
-          <span>Verifier mobile</span>
-          <span>Estate owner dashboard</span>
-        </div>
+        <p className="lg:text-right">
+          Copyright {new Date().getFullYear()} Sycure. All rights reserved.
+        </p>
       </div>
     </footer>
   );
