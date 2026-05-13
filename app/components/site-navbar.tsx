@@ -1,138 +1,127 @@
-import { ChevronDown, Menu } from "lucide-react";
+"use client";
+
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
-const navItems = [
+const navLinks = [
   { label: "Overview", href: "#overview" },
   { label: "Solutions", href: "#solutions" },
   { label: "Security", href: "#security" },
 ];
 
-const platformItems = [
-  { label: "Resident mobile app", href: "#solutions" },
-  { label: "Verifier mobile app", href: "#solutions" },
-  { label: "Estate owner dashboard", href: "#solutions" },
-];
-
 export function SiteNavbar() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="sticky top-4 z-20">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 rounded-[2rem] border border-white/60 bg-white/80 px-4 py-4 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur xl:px-6">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-center justify-between gap-3 lg:flex-none">
+    <header className="sticky top-0 z-20 border-b border-border bg-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+        {/* Logo */}
+        <Link href="/" aria-label="Sycure home">
+          <Image
+            src="/sycureLogo.svg"
+            alt="Sycure"
+            width={130}
+            height={36}
+            className="h-9 w-auto"
+          />
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-1 lg:flex">
+          {navLinks.map(({ label, href }) => (
             <Link
-              href="/"
-              className="flex items-center rounded-2xl px-1 py-1 transition hover:opacity-90"
-              aria-label="Sycure home"
+              key={label}
+              href={href}
+              className="rounded-pill px-4 py-2 text-sm font-medium text-ink-secondary transition-colors hover:bg-surface hover:text-ink"
             >
-              <Image
-                src="/sycureLogo.svg"
-                alt="Sycure logo"
-                width={160}
-                height={40}
-                className="h-9 w-auto sm:h-10"
-              />
+              {label}
             </Link>
+          ))}
+        </nav>
 
-            <details className="group relative lg:hidden">
-              <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50">
-                <Menu className="h-4 w-4" />
-                Menu
-              </summary>
+        {/* Desktop actions */}
+        <div className="hidden items-center gap-5 lg:flex">
+          <Link
+            href="#contact"
+            className="text-sm font-medium text-ink-secondary transition-colors hover:text-ink"
+          >
+            Talk to Sales
+          </Link>
+          <SplitPill label="Request Demo" href="#solutions" />
+        </div>
 
-              <div className="absolute right-0 top-full z-30 mt-3 w-[min(22rem,calc(100vw-2rem))] rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
-                <div className="space-y-1">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className="block rounded-xl px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-slate-950"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
+        {/* Mobile toggle */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="flex items-center gap-2 rounded-pill border border-border px-4 py-2 text-sm font-medium text-ink-secondary transition-colors hover:bg-surface lg:hidden"
+        >
+          {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          Menu
+        </button>
+      </div>
 
-                <div className="mt-3 rounded-2xl bg-slate-50 p-3">
-                  <p className="px-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    Platforms
-                  </p>
-                  <div className="mt-2 space-y-1">
-                    {platformItems.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        className="block rounded-xl px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-3 grid gap-2">
-                  <Link
-                    href="#contact"
-                    className="rounded-full border border-slate-200 px-4 py-3 text-center text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
-                  >
-                    Talk to Sales
-                  </Link>
-                  <Link
-                    href="#solutions"
-                    className="rounded-full bg-[#03BDE9] px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#029fc3]"
-                  >
-                    Request Demo
-                  </Link>
-                </div>
-              </div>
-            </details>
-          </div>
-
-          <nav className="hidden flex-wrap items-center gap-2 lg:flex lg:justify-center">
-            {navItems.map((item) => (
+      {/* Mobile menu */}
+      {open && (
+        <div className="border-t border-border bg-white px-6 pb-6 pt-4 lg:hidden">
+          <nav className="space-y-1">
+            {navLinks.map(({ label, href }) => (
               <Link
-                key={item.label}
-                href={item.href}
-                className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950"
+                key={label}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="block rounded-card px-4 py-3 text-sm font-medium text-ink-secondary transition-colors hover:bg-surface hover:text-ink"
               >
-                {item.label}
+                {label}
               </Link>
             ))}
-            <details className="group relative">
-              <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950">
-                Platforms
-                <ChevronDown className="h-4 w-4 text-slate-400 transition group-open:rotate-180" />
-              </summary>
-              <div className="absolute left-0 top-full z-30 mt-2 min-w-56 rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
-                {platformItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="block rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-950"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </details>
           </nav>
-
-          <div className="hidden flex-wrap items-center gap-3 lg:flex lg:justify-end">
+          <div className="mt-5 space-y-2">
             <Link
               href="#contact"
-              className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+              className="block rounded-pill border border-border px-4 py-3 text-center text-sm font-medium text-ink-secondary transition-colors hover:bg-surface"
             >
               Talk to Sales
             </Link>
-            <Link
-              href="#solutions"
-              className="rounded-full bg-[#03BDE9] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#029fc3]"
-            >
-              Request Demo
-            </Link>
+            <SplitPill label="Request Demo" href="#solutions" fullWidth />
           </div>
         </div>
-      </div>
+      )}
     </header>
+  );
+}
+
+function SplitPill({
+  label,
+  href,
+  fullWidth,
+}: {
+  label: string;
+  href: string;
+  fullWidth?: boolean;
+}) {
+  return (
+    <div className={`flex items-center gap-1 ${fullWidth ? "w-full" : ""}`}>
+      <Link
+        href={href}
+        className={`rounded-pill bg-primary px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-primary-emphasis ${
+          fullWidth ? "flex-1 text-center" : ""
+        }`}
+      >
+        {label}
+      </Link>
+      <Link
+        href={href}
+        aria-hidden="true"
+        tabIndex={-1}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-pill bg-primary text-ink transition-colors hover:bg-primary-emphasis"
+      >
+        <ArrowUpRight className="h-4 w-4" />
+      </Link>
+    </div>
   );
 }
