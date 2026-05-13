@@ -145,9 +145,15 @@ export function SiteFooter() {
 
       <div className="flex flex-col gap-4 border-t border-white/10 px-6 py-5 text-sm text-slate-400 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
         <p>Designed for gated estates, secure visitor approvals, and digital gate operations.</p>
-        <p className="lg:text-right">
-          Copyright {new Date().getFullYear()} Sycure. All rights reserved.
-        </p>
+        <div className="flex flex-wrap items-center gap-4 lg:justify-end">
+          <Link
+            href="/privacy"
+            className="transition hover:text-white"
+          >
+            Privacy Policy
+          </Link>
+          <p>Copyright {new Date().getFullYear()} Sycure. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   );
