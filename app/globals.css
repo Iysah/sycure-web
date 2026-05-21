@@ -2,10 +2,10 @@
 
 /* ── Design tokens (static values → resolved at build time) ─────────────────── */
 @theme {
-  /* Brand purple */
-  --color-primary:          #c4b5fd; /* soft lavender  – buttons, badges         */
-  --color-primary-emphasis: #a78bfa; /* deeper purple  – filled / featured bg    */
-  --color-primary-muted:    #ede9fe; /* pale lavender  – icon fills, tints       */
+  /* Brand cyan */
+  --color-primary:          #12bce8; /* rgb(18 188 232) – buttons, badges        */
+  --color-primary-emphasis: #0da3cc; /* darker cyan     – hover, filled bg       */
+  --color-primary-muted:    #e0f7fd; /* pale cyan tint  – icon fills, tints      */
 
   /* Surfaces */
   --color-surface:          #f5f5f5; /* section bg, card fills on white          */
