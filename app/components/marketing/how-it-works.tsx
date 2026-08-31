@@ -2,6 +2,7 @@ import { Container } from "@/app/components/primitives/container";
 import { SectionHeader } from "@/app/components/primitives/section-header";
 import { Reveal } from "@/app/components/motion/reveal";
 import { GateLog } from "@/app/components/product/gate-log-mock";
+import { GuardVerifyMock } from "@/app/components/product/guard-verify-mock";
 import { HOW_IT_WORKS } from "@/app/lib/content";
 
 export function HowItWorks() {
@@ -28,11 +29,17 @@ export function HowItWorks() {
           ))}
         </ol>
 
-        <div className="mt-12">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
-            Every check lands here
-          </p>
-          <Reveal>
+        <div className="mt-14 grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+          <Reveal className="rounded-card-lg border border-border bg-surface-elevated p-6">
+            <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">
+              At the gate
+            </p>
+            <GuardVerifyMock animate />
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
+              Every check lands here
+            </p>
             <GateLog />
           </Reveal>
         </div>

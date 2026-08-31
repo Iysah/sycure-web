@@ -1,8 +1,10 @@
-import { Bell, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { Container } from "@/app/components/primitives/container";
 import { ButtonLink } from "@/app/components/primitives/button";
-import { GuardVerifyMock } from "@/app/components/product/guard-verify-mock";
-import { CTA } from "@/app/lib/content";
+import { StoreBadges } from "@/app/components/primitives/store-badges";
+import { AppScreenshot } from "@/app/components/product/app-screenshot";
+import { APP_STORES, CTA } from "@/app/lib/content";
+import { SCREENS } from "@/app/lib/screens";
 
 export function Hero() {
   return (
@@ -35,21 +37,36 @@ export function Hero() {
               </ButtonLink>
             </div>
 
-            <p className="mt-5 text-sm text-ink-muted">
-              Replaces the paper register, the WhatsApp approval, and the call to
-              the gate.
-            </p>
+            {/* <div className="mt-7">
+              <p className="text-xs font-medium uppercase tracking-[0.14em] text-ink-muted">
+                Get the resident &amp; verifier apps
+              </p>
+              <StoreBadges items={APP_STORES} height={40} className="mt-2.5" />
+            </div> */}
           </div>
 
-          {/* Product */}
-          <div className="relative rounded-card-lg border border-border bg-surface p-6 sm:p-10">
-            <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
-              Verifying a visitor at the gate
-            </p>
-            <GuardVerifyMock animate className="max-w-75" />
-            <div className="pointer-events-none absolute -bottom-3 right-3 hidden items-center gap-2 rounded-pill border border-border bg-surface-elevated px-3.5 py-2 text-xs font-medium text-ink shadow-float sm:flex">
-              <Bell className="h-3.5 w-3.5 text-brand-strong" aria-hidden="true" />
-              Unit 14B notified
+          {/* Product — real app screens */}
+          <div className="relative rounded-card-lg border border-border bg-surface p-6 sm:p-8">
+            <div className="grid grid-cols-2 gap-4">
+              <figure>
+                <AppScreenshot
+                  src={SCREENS.residentHome}
+                  alt="Sycure resident app home screen showing guest codes remaining, a Generate Access Code shortcut, estate bills, and recent activity"
+                  priority
+                />
+                <figcaption className="mt-3 text-center text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">
+                  Resident app
+                </figcaption>
+              </figure>
+              <figure className="translate-y-8">
+                <AppScreenshot
+                  src={SCREENS.verifierOrganization}
+                  alt="Sycure verifier app showing the Verify Guest panel where a guard enters an access code, plus recent verification activity"
+                />
+                <figcaption className="mt-3 text-center text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">
+                  Verifier app
+                </figcaption>
+              </figure>
             </div>
           </div>
         </div>

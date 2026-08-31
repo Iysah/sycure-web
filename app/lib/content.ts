@@ -81,9 +81,8 @@ export const APP_STORES = [
 export const NAV_LINKS = [
   { label: "How it works", href: "#how-it-works" },
   { label: "For your team", href: "#roles" },
-  // { label: "Security", href: "#security" },
+  { label: "Security", href: "#security" },
   { label: "Platform", href: "#platform" },
-  // { label: "FAQ", href: "#faq" },
 ] as const;
 
 export type NavLink = (typeof NAV_LINKS)[number];
@@ -122,7 +121,7 @@ export type VerificationStateKey = keyof typeof VERIFICATION_STATES;
 
 export const TRUST_SIGNALS = [
   { label: "Estate-specific authorization", icon: Building2 },
-  { label: "Time-bound visitor codes", icon: CalendarClock },
+  { label: "One-time visitor codes", icon: CalendarClock },
   { label: "Every entry logged", icon: FileClock },
   { label: "Role-based access", icon: Fingerprint },
   { label: "Real-time notifications", icon: BellRing },
@@ -167,20 +166,20 @@ export const HOW_IT_WORKS = {
   steps: [
     {
       n: "01",
-      title: "A resident creates a pass",
-      body: "They set the visitor's name, the date, and the time window. Sycure generates a QR code and a short alphanumeric code, valid only at their estate.",
+      title: "A resident generates an access code",
+      body: "In the app they add the guest's name, the reason for the visit, and a detail to spot them by. Sycure issues a one-time code, valid only at their estate.",
       icon: QrCode,
     },
     {
       n: "02",
-      title: "A guard verifies at the gate",
-      body: "The guard scans the QR or types the code. Sycure checks the estate, the time window, and the pass status, then shows a clear approve or reject.",
+      title: "A guard verifies it at the gate",
+      body: "The guard enters the code in the verifier app. Sycure checks it against the estate's records and shows a clear result — no phone call to the resident.",
       icon: ScanLine,
     },
     {
       n: "03",
-      title: "The estate sees the event",
-      body: "Every check — approved, rejected, expired, estate mismatch — is written to the gate log with a timestamp and the guard who made the call.",
+      title: "The estate keeps the record",
+      body: "Every verification — verified, rejected, expired, estate mismatch — is written to the activity log with a timestamp and the guard who made the call.",
       icon: Activity,
     },
   ],

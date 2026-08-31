@@ -5,15 +5,25 @@ import { Check } from "lucide-react";
 import { Container } from "@/app/components/primitives/container";
 import { SectionHeader } from "@/app/components/primitives/section-header";
 import { ButtonLink } from "@/app/components/primitives/button";
-import { VisitorPassMock } from "@/app/components/product/visitor-pass-mock";
-import { GuardVerifyMock } from "@/app/components/product/guard-verify-mock";
+import { AppScreenshot } from "@/app/components/product/app-screenshot";
 import { GateLogMock } from "@/app/components/product/gate-log-mock";
 import { ROLES, CTA, type RoleId } from "@/app/lib/content";
+import { SCREENS } from "@/app/lib/screens";
 import { cn } from "@/app/lib/cn";
 
 const MOCKS: Record<RoleId, ReactNode> = {
-  residents: <VisitorPassMock />,
-  guards: <GuardVerifyMock />,
+  residents: (
+    <AppScreenshot
+      src={SCREENS.residentAccess}
+      alt="Sycure resident app Access Tokens screen: Guest Code for a single visitor, Event Code for multiple attendees, and a list of recently generated codes with pending status"
+    />
+  ),
+  guards: (
+    <AppScreenshot
+      src={SCREENS.verifierOrganization}
+      alt="Sycure verifier app Organization screen: generate a new guest access code, verify a guest by entering their code, and review verification history"
+    />
+  ),
   managers: <GateLogMock />,
 };
 

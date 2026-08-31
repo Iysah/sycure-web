@@ -23,7 +23,7 @@ export function CtaSection() {
           </ButtonLink>
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-8">
+        {/* <div className="mt-10 border-t border-white/10 pt-8">
           <p className="text-sm text-white/55">
             Already onboarded? Get the resident and verifier apps.
           </p>
@@ -33,7 +33,7 @@ export function CtaSection() {
             height={44}
             className="mt-4 justify-center"
           />
-        </div>
+        </div> */}
       </Container>
     </section>
   );
