@@ -22,7 +22,7 @@ export function GateLog({ className }: { className?: string }) {
           <tr className="text-xs uppercase tracking-[0.12em] text-ink-muted">
             <th scope="col" className="px-4 py-2 font-medium">Time</th>
             <th scope="col" className="px-4 py-2 font-medium">Estate</th>
-            <th scope="col" className="hidden px-4 py-2 font-medium sm:table-cell">Method</th>
+            <th scope="col" className="hidden px-4 py-2 font-medium sm:table-cell">Code</th>
             <th scope="col" className="px-4 py-2 font-medium">Result</th>
           </tr>
         </thead>
@@ -34,7 +34,7 @@ export function GateLog({ className }: { className?: string }) {
             >
               <td className="px-4 py-3 font-mono text-xs text-ink-secondary">{row.time}</td>
               <td className="px-4 py-3 text-ink-secondary">{row.estate}</td>
-              <td className="hidden px-4 py-3 text-ink-muted sm:table-cell">{row.method}</td>
+              <td className="hidden px-4 py-3 font-mono text-xs text-ink-muted sm:table-cell">{row.code}</td>
               <td className="px-4 py-3">
                 <StatusBadge state={row.state} size="sm" />
               </td>
@@ -101,7 +101,7 @@ export function GateLogMock({ className }: { className?: string }) {
             <ul>
               {GATE_LOG_ROWS.slice(0, 3).map((row) => (
                 <li
-                  key={`${row.time}-${row.method}`}
+                  key={`${row.time}-${row.code}`}
                   className="flex items-center justify-between px-3 py-2 text-xs text-ink-secondary [&:not(:last-child)]:border-b [&:not(:last-child)]:border-border-subtle"
                 >
                   <span>

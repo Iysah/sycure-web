@@ -61,15 +61,15 @@ export function GuardVerifyMock({ className, animate = false }: GuardVerifyMockP
     <div ref={ref}>
       <PhoneFrame
         className={className}
-        label="Sycure verifier app confirming a visitor code: estate and time window checked, entry approved"
+        label="Sycure verifier app confirming a guest access code: estate and time window checked, entry verified"
       >
         <div className="space-y-4 px-5 pb-6 pt-4">
           <div className="flex items-center justify-between">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
-              Verify entry
+              Verify guest
             </p>
             <span className="font-mono text-sm tracking-[0.25em] text-ink">
-              7K4P-9QX
+              0152 0328
             </span>
           </div>
 
@@ -85,7 +85,7 @@ export function GuardVerifyMock({ className, animate = false }: GuardVerifyMockP
               className={cn("h-4 w-4", scanning && "animate-spin")}
               aria-hidden="true"
             />
-            {scanning ? "Scanning code…" : "Code read"}
+            {scanning ? "Checking code…" : "Code entered"}
           </div>
 
           <ul className="space-y-2">

@@ -81,7 +81,7 @@ export const APP_STORES = [
 export const NAV_LINKS = [
   { label: "How it works", href: "#how-it-works" },
   { label: "For your team", href: "#roles" },
-  { label: "Security", href: "#security" },
+  // { label: "Security", href: "#security" },
   { label: "Platform", href: "#platform" },
 ] as const;
 
@@ -209,12 +209,12 @@ export const ROLES = [
     eyebrow: "Resident app",
     headline: "Authorize a visitor before they arrive",
     summary:
-      "Create a pass in seconds, share it however you like, and get told the moment your guest is checked in — or turned away.",
+      "Generate a one-time Guest Code for a single visitor — or an Event Code for a group — and share it however you like. Get notified the moment they're verified at the gate.",
     benefits: [
-      "Generate a QR or alphanumeric pass per visitor",
-      "Set the date and time window each pass is valid for",
-      "Get a live notification on check-in, rejection, or expiry",
-      "Review a searchable history of everyone you've let in",
+      "A Guest Code for one visitor, an Event Code for many",
+      "Add the reason for the visit and a detail to spot them by",
+      "See every code you've generated and its current status",
+      "Get a live notification when a guest is verified",
     ],
   },
   {
@@ -223,26 +223,26 @@ export const ROLES = [
     eyebrow: "Verifier app",
     headline: "A clear decision at the gate, every time",
     summary:
-      "Scan or type the code. Sycure confirms the estate, the time window, and the resident behind it — then tells you yes or no.",
+      "Enter the visitor's access code. Sycure checks it against your estate's records and tells you whether to let them in — without a call to the resident.",
     benefits: [
-      "Scan the QR or enter the code by hand",
-      "See the estate and time window checked before you decide",
-      "Distinct states for approved, rejected, expired, and mismatch",
-      "Keep moving — the queue clears without phone calls",
+      "Enter a guest's access code to verify entry",
+      "Generate a code on the spot for an unexpected guest",
+      "Distinct states: verified, pending, expired, estate mismatch",
+      "Every check kept in the verification history",
     ],
   },
   {
     id: "managers",
     tabLabel: "Estate managers",
-    eyebrow: "Management dashboard",
+    eyebrow: "Estate administration",
     headline: "One view of who's coming through your gates",
     summary:
       "Onboard residents and guards, scope each guard to the right estate, and read a complete, timestamped record of every verification.",
     benefits: [
       "Manage residents, guards, and multiple estates in one place",
-      "Scope guard access so a pass only works where it should",
-      "Watch live gate activity and unusual verification events",
-      "Export the audit trail for incident reviews and reporting",
+      "Scope guard access so a code only works where it should",
+      "Review gate activity and unusual verification events",
+      "Keep an audit trail for incident reviews and reporting",
     ],
   },
 ] as const satisfies readonly RoleContent[];
@@ -262,18 +262,18 @@ export const SECURITY = {
       icon: Building2,
     },
     {
-      title: "Time-bound codes",
-      body: "Every pass carries a date and a window. Outside it, the code is dead.",
+      title: "One-time codes",
+      body: "Each code is issued for a single visit on a specific day. Once it's used or the day passes, it stops working.",
       icon: CalendarClock,
     },
     {
       title: "Scoped guard access",
-      body: "Estate management decides which guard verifies at which gate. Access is explicit and revocable.",
+      body: "Estate administration decides which guard verifies at which gate. Access is explicit and revocable.",
       icon: Fingerprint,
     },
     {
-      title: "Immutable gate log",
-      body: "Approvals, rejections, and the reason behind each one are recorded with a timestamp and can't be quietly edited.",
+      title: "A record you can't quietly edit",
+      body: "Every verification and the reason behind it is written to the activity log with a timestamp and the guard who made the call.",
       icon: FileClock,
     },
   ],
@@ -281,15 +281,15 @@ export const SECURITY = {
 
 /* Sample rows for the gate-log mock — illustrative, not real estate data */
 export const GATE_LOG_ROWS = [
-  { time: "08:10", estate: "Green Oaks", method: "QR scan", state: "verified" },
-  { time: "08:14", estate: "Green Oaks", method: "Manual code", state: "approved" },
-  { time: "08:22", estate: "Palm Ridge", method: "QR scan", state: "mismatch" },
-  { time: "08:37", estate: "Green Oaks", method: "Manual code", state: "expired" },
-  { time: "08:41", estate: "Green Oaks", method: "QR scan", state: "verified" },
+  { time: "08:10", estate: "Green Oaks", code: "01520328", state: "verified" },
+  { time: "08:14", estate: "Green Oaks", code: "72414069", state: "approved" },
+  { time: "08:22", estate: "Palm Ridge", code: "05414709", state: "mismatch" },
+  { time: "08:37", estate: "Green Oaks", code: "27418793", state: "expired" },
+  { time: "08:41", estate: "Green Oaks", code: "35404576", state: "verified" },
 ] as const satisfies readonly {
   time: string;
   estate: string;
-  method: string;
+  code: string;
   state: VerificationStateKey;
 }[];
 
@@ -300,29 +300,29 @@ export const GATE_LOG_ROWS = [
 export const PLATFORM = {
   eyebrow: "The platform",
   heading: "The gate is where Sycure starts, not where it ends",
-  body: "Sycure Estate is being built as one digital layer for a residential community. Access control is live today. These modules are on the roadmap.",
+  body: "Sycure Estate is one app for living in a modern estate. Access control and emergency response are live today; more of estate life is moving in.",
   live: {
     label: "Live now",
     items: [
       {
         title: "Visitor access control",
-        body: "Resident passes, guard verification, and the estate-wide gate log.",
+        body: "Guest and event codes, gate verification, and the estate activity log.",
         icon: ShieldCheck,
+      },
+      {
+        title: "Smart Emergency",
+        body: "An SOS alert that notifies estate security immediately, with health and fire options and local hotlines built in.",
+        icon: Siren,
       },
     ],
   },
   roadmap: {
-    label: "On the roadmap",
+    label: "Rolling out",
     items: [
       {
         title: "Utility payments",
         body: "Estate managers define levies and utilities; residents pay and track them in-app.",
         icon: Wallet,
-      },
-      {
-        title: "Smart Emergency",
-        body: "A direct digital channel for residents to raise security, medical, or fire alerts.",
-        icon: Siren,
       },
       {
         title: "Estate communications",
@@ -379,16 +379,20 @@ export const TESTIMONIALS: readonly Testimonial[] = [];
 
 export const FAQS = [
   {
-    q: "What does a resident need to create a pass?",
-    a: "The Sycure resident app and an active account on an estate that's onboarded to Sycure. Creating a pass takes a name, a date, and a time window.",
+    q: "What does a resident need to generate a code?",
+    a: "The Sycure resident app and an active account on an estate that's onboarded to Sycure. A code takes the guest's name, the reason for the visit, and a short description.",
+  },
+  {
+    q: "What's the difference between a Guest Code and an Event Code?",
+    a: "A Guest Code authorizes one visitor. An Event Code clears a group of attendees for the same event, so you don't generate a code per person.",
   },
   {
     q: "What does a guard need at the gate?",
-    a: "The Sycure Verifier app on an Android device with internet connectivity. Verification happens in real time against the estate's records.",
+    a: "The Sycure verifier app on an Android device with internet connectivity. Verification happens in real time against the estate's records.",
   },
   {
     q: "Does a visitor code work at any estate?",
-    a: "No. Every pass is bound to the estate that issued it. Presented at any other gate, it fails verification.",
+    a: "No. Every code is bound to the estate that issued it. Entered at any other gate, it fails verification.",
   },
   {
     q: "What happens to our existing paper register?",
