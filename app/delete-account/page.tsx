@@ -51,10 +51,10 @@ export default function DeleteAccountPage() {
         <SiteNavbar />
         <div className="flex min-h-[calc(100vh-65px)] items-center justify-center px-6 py-16">
           <div className="w-full max-w-md text-center">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-muted text-primary">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-approved-soft text-approved">
               <CheckCircle className="h-8 w-8" />
             </div>
-            <h1 className="text-2xl font-bold text-ink">Request received</h1>
+            <h1 className="font-display text-2xl text-ink">Request received</h1>
             <p className="mt-3 text-sm leading-7 text-ink-secondary">
               We&apos;ve received your account deletion request for{" "}
               <span className="font-medium text-ink">{email}</span>. You&apos;ll
@@ -63,7 +63,7 @@ export default function DeleteAccountPage() {
             </p>
             <Link
               href="/"
-              className="mt-8 inline-flex items-center gap-2 rounded-pill bg-primary px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-emphasis"
+              className="mt-8 inline-flex items-center gap-2 press rounded-pill bg-ink px-6 py-3 text-sm font-medium text-white hover:bg-ink-surface-2"
             >
               Back to home
               <ArrowUpRight className="h-4 w-4" />
@@ -81,7 +81,7 @@ export default function DeleteAccountPage() {
       <main className="mx-auto max-w-lg px-6 py-16 lg:py-24">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-ink">Delete account</h1>
+          <h1 className="font-display text-3xl text-ink">Delete account</h1>
           <p className="mt-2 text-sm leading-7 text-ink-secondary">
             We&apos;re sorry to see you go. This action is permanent and cannot
             be undone.
@@ -121,14 +121,14 @@ export default function DeleteAccountPage() {
                 if (errors.email) setErrors((p) => ({ ...p, email: undefined }));
               }}
               placeholder="you@example.com"
-              className={`w-full rounded-card border px-4 py-3 text-sm text-ink placeholder:text-ink-muted outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 ${
+              className={`w-full rounded-card border px-4 py-3 text-sm text-ink placeholder:text-ink-muted outline-none transition-colors focus:border-brand-strong focus:ring-2 focus:ring-brand/20 ${
                 errors.email
-                  ? "border-red-400 bg-red-50"
+                  ? "border-rejected bg-rejected-soft"
                   : "border-border bg-surface hover:border-ink-muted"
               }`}
             />
             {errors.email && (
-              <p className="mt-1.5 text-xs text-red-500">{errors.email}</p>
+              <p className="mt-1.5 text-xs text-rejected">{errors.email}</p>
             )}
           </div>
 
@@ -148,11 +148,11 @@ export default function DeleteAccountPage() {
                 if (errors.reason)
                   setErrors((p) => ({ ...p, reason: undefined }));
               }}
-              className={`w-full appearance-none rounded-card border px-4 py-3 text-sm outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 ${
+              className={`w-full appearance-none rounded-card border px-4 py-3 text-sm outline-none transition-colors focus:border-brand-strong focus:ring-2 focus:ring-brand/20 ${
                 reason ? "text-ink" : "text-ink-muted"
               } ${
                 errors.reason
-                  ? "border-red-400 bg-red-50"
+                  ? "border-rejected bg-rejected-soft"
                   : "border-border bg-surface hover:border-ink-muted"
               }`}
             >
@@ -166,7 +166,7 @@ export default function DeleteAccountPage() {
               ))}
             </select>
             {errors.reason && (
-              <p className="mt-1.5 text-xs text-red-500">{errors.reason}</p>
+              <p className="mt-1.5 text-xs text-rejected">{errors.reason}</p>
             )}
           </div>
 
@@ -193,7 +193,7 @@ export default function DeleteAccountPage() {
                   ? "Please describe your reason…"
                   : "Anything else you'd like us to know?"
               }
-              className="w-full resize-none rounded-card border border-border bg-surface px-4 py-3 text-sm text-ink placeholder:text-ink-muted outline-none transition-colors hover:border-ink-muted focus:border-primary focus:ring-2 focus:ring-primary/20"
+              className="w-full resize-none rounded-card border border-border bg-surface px-4 py-3 text-sm text-ink placeholder:text-ink-muted outline-none transition-colors hover:border-ink-muted focus:border-brand-strong focus:ring-2 focus:ring-brand/20"
             />
           </div>
 
@@ -202,7 +202,7 @@ export default function DeleteAccountPage() {
             <button
               type="submit"
               disabled={formState === "submitting"}
-              className="flex-1 rounded-pill bg-red-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex-1 press rounded-pill bg-rejected px-6 py-3 text-sm font-semibold text-white hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {formState === "submitting"
                 ? "Submitting…"
@@ -231,7 +231,7 @@ export default function DeleteAccountPage() {
           </div>
           <p className="text-center text-xs text-ink-muted">
             Changed your mind?{" "}
-            <Link href="/" className="text-primary underline-offset-2 hover:underline">
+            <Link href="/" className="text-brand-strong underline-offset-2 hover:underline">
               Go back
             </Link>
           </p>

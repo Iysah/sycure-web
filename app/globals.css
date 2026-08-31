@@ -1,50 +1,173 @@
 @import "tailwindcss";
 
-/* ── Design tokens (static values → resolved at build time) ─────────────────── */
+/* ─────────────────────────────────────────────────────────────────────────────
+   Sycure design tokens
+   Single, committed light identity. Brand cyan is preserved as the
+   "verified / secure" accent; primary actions lean on ink for an
+   architectural, premium feel.
+   ──────────────────────────────────────────────────────────────────────────── */
 @theme {
-  /* Brand cyan */
-  --color-primary:          #12bce8; /* rgb(18 188 232) – buttons, badges        */
-  --color-primary-emphasis: #0da3cc; /* darker cyan     – hover, filled bg       */
-  --color-primary-muted:    #e0f7fd; /* pale cyan tint  – icon fills, tints      */
+  /* Brand — cyan is the signal colour, not the button colour */
+  --color-brand:        #12bce8;
+  --color-brand-strong: #0b9ec6;
+  --color-brand-soft:   #e4f7fc;
+  --color-brand-line:   #b9e9f5;
 
-  /* Surfaces */
-  --color-surface:          #f5f5f5; /* section bg, card fills on white          */
-  --color-surface-elevated: #ffffff;
+  /* Ink (cool near-black) */
+  --color-ink:           #0b0f14; /* headings                              */
+  --color-ink-secondary: #3f4d59; /* body copy                             */
+  --color-ink-muted:     #6b7a86; /* captions, meta, placeholder           */
 
-  /* Page defaults */
-  --color-background:       #ffffff;
-  --color-foreground:       #0d0d0d;
+  /* Light surfaces */
+  --color-surface:          #f6f8f9; /* section bands                       */
+  --color-surface-sunken:   #eef1f3; /* insets, wells                      */
+  --color-surface-elevated: #ffffff; /* cards                              */
 
-  /* Ink */
-  --color-ink:              #0d0d0d; /* headings, heavy labels                   */
-  --color-ink-secondary:    #4b5563; /* body copy                                */
-  --color-ink-muted:        #9ca3af; /* captions, meta, placeholder              */
+  /* Dark surfaces (security / CTA regions) */
+  --color-ink-surface:   #0b0f14;
+  --color-ink-surface-2: #131c24;
+  --color-ink-line:      #26333d;
 
   /* Borders */
-  --color-border:           #e5e7eb;
-  --color-border-subtle:    #f3f4f6;
+  --color-border:        #e3e8eb;
+  --color-border-subtle: #eef1f3;
+  --color-border-strong: #cfd7dc;
 
-  /* Border radius → rounded-* utilities */
-  --radius-pill:    9999px;  /* buttons, badges                   */
-  --radius-card:    1rem;    /* standard cards (16 px)            */
-  --radius-card-lg: 1.25rem; /* hero panel, section cards (20 px) */
-  --radius-icon:    0.625rem;/* small icon containers (10 px)     */
+  /* Page defaults */
+  --color-background: #ffffff;
+  --color-foreground: #0b0f14;
 
-  /* Shadows → shadow-* utilities */
-  --shadow-card:  0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
-  --shadow-float: 0 8px 32px -8px rgb(0 0 0 / 0.16);
+  /* Semantic verification states */
+  --color-approved:      #12915a;
+  --color-approved-soft:  #e4f4ec;
+  --color-rejected:      #d23b3b;
+  --color-rejected-soft: #fce9e9;
+  --color-pending:       #b7791f;
+  --color-pending-soft:  #f9efdd;
+  --color-expired:       #64727d;
+  --color-expired-soft:  #eceff1;
+  --color-mismatch:      #7c5cf0;
+  --color-mismatch-soft: #efe9fe;
+
+  /* Radius */
+  --radius-pill:    9999px;
+  --radius-card:    0.875rem;
+  --radius-card-lg: 1.125rem;
+  --radius-field:   0.625rem;
+
+  /* Elevation — one floating shadow, one resting shadow */
+  --shadow-rest:  0 1px 2px 0 rgb(11 15 20 / 0.06), 0 1px 3px -1px rgb(11 15 20 / 0.05);
+  --shadow-float: 0 20px 48px -16px rgb(11 15 20 / 0.22), 0 4px 12px -6px rgb(11 15 20 / 0.10);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --dur-press: 140ms;
+  --dur-quick: 200ms;
+  --dur-panel: 420ms;
 }
 
-/* Runtime font injection (CSS vars set by Next.js layout, resolved at paint time) */
+/* Runtime font variables (set by next/font in app/layout.tsx) */
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), system-ui, sans-serif;
 }
 
-/* ── Base ───────────────────────────────────────────────────────────────────── */
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+:root {
+  color-scheme: light;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  /* Anchor links land below the sticky header */
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background-color: #ffffff;
-  color: #0d0d0d;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-ink);
+  overflow-x: clip;
+  font-family: var(--font-sans);
+  font-feature-settings: "cv05" 1, "ss01" 1;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display type: tighten tracking as size grows (apple-design §15) */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.021em;
+  font-weight: 700;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Consistent, visible focus for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-brand-strong);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-brand-soft);
+  color: var(--color-ink);
+}
+
+/* ── Motion primitives ─────────────────────────────────────────────────────── */
+
+/* Scroll-reveal: elements start shifted + transparent, settle when .is-visible
+   is added by the Reveal component's IntersectionObserver. Gated on `.js` (set
+   by an inline script in the layout) so content is always visible without JS. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--dur-panel) var(--ease-out),
+    transform var(--dur-panel) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Press feedback for primary/secondary buttons (apple-design §1) */
+.press {
+  transition: transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-quick) var(--ease-out),
+    border-color var(--dur-quick) var(--ease-out),
+    color var(--dur-quick) var(--ease-out);
+}
+.press:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .press:active {
+    transform: none;
+  }
 }
