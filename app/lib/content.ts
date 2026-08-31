@@ -6,7 +6,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Activity,
-  BellRing,
   Building2,
   CalendarClock,
   ClipboardList,
@@ -124,7 +123,7 @@ export const TRUST_SIGNALS = [
   { label: "One-time visitor codes", icon: CalendarClock },
   { label: "Every entry logged", icon: FileClock },
   { label: "Role-based access", icon: Fingerprint },
-  { label: "Real-time notifications", icon: BellRing },
+  // { label: "Real-time notifications", icon: BellRing },
   { label: "NDPA-aligned data handling", icon: ShieldCheck },
 ] as const satisfies readonly { label: string; icon: LucideIcon }[];
 
@@ -420,7 +419,7 @@ export const FOOTER_GROUPS = [
     links: [
       { label: "How it works", href: "#how-it-works" },
       { label: "For your team", href: "#roles" },
-      { label: "Security", href: "#security" },
+      // { label: "Security", href: "#security" },
       { label: "Platform", href: "#platform" },
     ],
   },

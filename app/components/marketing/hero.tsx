@@ -1,9 +1,8 @@
 import { ShieldCheck } from "lucide-react";
 import { Container } from "@/app/components/primitives/container";
 import { ButtonLink } from "@/app/components/primitives/button";
-import { StoreBadges } from "@/app/components/primitives/store-badges";
 import { AppScreenshot } from "@/app/components/product/app-screenshot";
-import { APP_STORES, CTA } from "@/app/lib/content";
+import { CTA } from "@/app/lib/content";
 import { SCREENS } from "@/app/lib/screens";
 
 export function Hero() {
@@ -36,13 +35,6 @@ export function Hero() {
                 {CTA.secondary.label}
               </ButtonLink>
             </div>
-
-            {/* <div className="mt-7">
-              <p className="text-xs font-medium uppercase tracking-[0.14em] text-ink-muted">
-                Get the resident &amp; verifier apps
-              </p>
-              <StoreBadges items={APP_STORES} height={40} className="mt-2.5" />
-            </div> */}
           </div>
 
           {/* Product — real app screens */}

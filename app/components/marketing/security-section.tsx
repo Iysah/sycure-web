@@ -38,7 +38,7 @@ export function SecuritySection() {
             <Reveal
               key={boundary.title}
               delay={i * 60}
-              className="rounded-card-lg border border-ink-line bg-ink-surface-2 p-6"
+              className="rounded-card-lg bg-ink-surface-2 p-6"
             >
               <boundary.icon className="h-6 w-6 text-brand" aria-hidden="true" />
               <h3 className="mt-4 font-display text-lg text-white">{boundary.title}</h3>
@@ -47,7 +47,7 @@ export function SecuritySection() {
           ))}
         </div>
 
-        <div className="mt-10 rounded-card-lg border border-ink-line bg-ink-surface-2 p-6">
+        <div className="mt-10 rounded-card-lg  bg-ink-surface-2 p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/50">
             Every check resolves to one clear state
           </p>

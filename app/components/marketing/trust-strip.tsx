@@ -8,9 +8,9 @@ export function TrustStrip() {
         <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
           Access control, enforced by the system
         </p>
-        <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-6">
+        <ul className="mx-auto mt-5 flex max-w-4xl flex-wrap justify-center gap-x-6 gap-y-5">
           {TRUST_SIGNALS.map(({ label, icon: Icon }) => (
-            <li key={label} className="flex flex-col items-center gap-2 text-center">
+            <li key={label} className="flex w-32 flex-col items-center gap-2 text-center sm:w-36">
               <Icon className="h-5 w-5 text-brand-strong" aria-hidden="true" />
               <span className="text-xs font-medium leading-4 text-ink-secondary">{label}</span>
             </li>

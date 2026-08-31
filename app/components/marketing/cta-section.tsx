@@ -1,7 +1,6 @@
 import { Container } from "@/app/components/primitives/container";
 import { ButtonLink } from "@/app/components/primitives/button";
-import { StoreBadges } from "@/app/components/primitives/store-badges";
-import { APP_STORES, CTA } from "@/app/lib/content";
+import { CTA } from "@/app/lib/content";
 
 export function CtaSection() {
   return (
@@ -22,18 +21,6 @@ export function CtaSection() {
             {CTA.secondary.label}
           </ButtonLink>
         </div>
-
-        {/* <div className="mt-10 border-t border-white/10 pt-8">
-          <p className="text-sm text-white/55">
-            Already onboarded? Get the resident and verifier apps.
-          </p>
-          <StoreBadges
-            items={APP_STORES}
-            onDark
-            height={44}
-            className="mt-4 justify-center"
-          />
-        </div> */}
       </Container>
     </section>
   );
