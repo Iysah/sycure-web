@@ -37,15 +37,53 @@ export type CtaKey = keyof typeof CTA;
 export type Cta = (typeof CTA)[CtaKey];
 
 /* ─────────────────────────────────────────────────────────────────────────────
+   App store listings — the resident and verifier apps ship from one bundle
+   ──────────────────────────────────────────────────────────────────────────── */
+
+export interface AppStore {
+  readonly id: "ios" | "android";
+  readonly href: string;
+  /**
+   * Official store badges in `public/badges/`. `onLight` is the standard badge;
+   * `onDark` is each vendor's dark-surface treatment (Apple's white badge,
+   * Google's keyline badge). Both are the unmodified official artwork.
+   */
+  readonly badge: { readonly onLight: string; readonly onDark: string };
+  /** Accessible label for the link/badge. */
+  readonly label: string;
+}
+
+export const APP_STORES = [
+  {
+    id: "ios",
+    href: "https://apps.apple.com/ng/app/sycure-estate/id6798421561",
+    badge: {
+      onLight: "/badges/app-store.svg",
+      onDark: "/badges/app-store-white.svg",
+    },
+    label: "Download Sycure Estate on the App Store",
+  },
+  {
+    id: "android",
+    href: "https://play.google.com/store/apps/details?id=com.sycure.mobile",
+    badge: {
+      onLight: "/badges/google-play.svg",
+      onDark: "/badges/google-play.svg",
+    },
+    label: "Get Sycure Estate on Google Play",
+  },
+] as const satisfies readonly AppStore[];
+
+/* ─────────────────────────────────────────────────────────────────────────────
    Navigation
    ──────────────────────────────────────────────────────────────────────────── */
 
 export const NAV_LINKS = [
   { label: "How it works", href: "#how-it-works" },
   { label: "For your team", href: "#roles" },
-  { label: "Security", href: "#security" },
+  // { label: "Security", href: "#security" },
   { label: "Platform", href: "#platform" },
-  { label: "FAQ", href: "#faq" },
+  // { label: "FAQ", href: "#faq" },
 ] as const;
 
 export type NavLink = (typeof NAV_LINKS)[number];

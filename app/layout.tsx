@@ -61,8 +61,16 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jakarta.variable} antialiased`}
+      suppressHydrationWarning
     >
       <body className="flex min-h-dvh flex-col bg-background text-ink">
+        <script
+          // Marks JS as available before the body paints, so scroll-reveal
+          // styles only apply when they can actually be undone.
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('js')`,
+          }}
+        />
         {children}
       </body>
     </html>

@@ -49,7 +49,7 @@ export function SiteNavbar() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
         <Link href="/" aria-label="Sycure home" className="shrink-0">
-          <Image src="/sycureLogo.svg" alt="Sycure" width={116} height={32} className="h-8 w-auto" priority />
+          <Image src="/sycureLogo.svg" alt="Sycure" width={129} height={32} className="h-8 w-auto" priority />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
@@ -65,9 +65,9 @@ export function SiteNavbar() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <ButtonLink href={CTA.secondary.href} variant="ghost">
+          {/* <ButtonLink href={CTA.secondary.href} variant="ghost">
             {CTA.secondary.label}
-          </ButtonLink>
+          </ButtonLink> */}
           <ButtonLink href={CTA.primary.href} variant="primary">
             {CTA.primary.label}
           </ButtonLink>
@@ -105,9 +105,9 @@ export function SiteNavbar() {
             ))}
           </nav>
           <div className="mt-4 flex flex-col gap-2">
-            <ButtonLink href={CTA.secondary.href} variant="secondary" className="w-full">
+            {/* <ButtonLink href={CTA.secondary.href} variant="secondary" className="w-full">
               {CTA.secondary.label}
-            </ButtonLink>
+            </ButtonLink> */}
             <ButtonLink href={CTA.primary.href} variant="primary" className="w-full">
               {CTA.primary.label}
             </ButtonLink>

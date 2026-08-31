@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteNavbar } from "../components/site-navbar";
 import { SiteFooter } from "../components/site-footer";
+import { Container } from "../components/primitives/container";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Sycure",
@@ -159,93 +160,85 @@ const EFFECTIVE_DATE = "13 May 2026";
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-[linear-gradient(180deg,#f7fcff_0%,#eef7fb_24%,#f4f7fb_100%)] px-4 py-6 text-zinc-900 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
-        <SiteNavbar />
+    <>
+      <SiteNavbar />
+      <main className="flex-1">
+        <Container className="max-w-4xl py-14 lg:py-20">
+          {/* Hero */}
+          <span className="inline-flex rounded-pill border border-brand-line bg-brand-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-brand-strong">
+            Legal
+          </span>
+          <h1 className="mt-4 font-display text-4xl leading-tight text-ink sm:text-5xl">
+            Privacy Policy
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-ink-secondary">
+            This policy explains what data Sycure collects, why we collect it,
+            and how it is used across the resident app, gate verifier app, and
+            estate management dashboard.
+          </p>
+          <p className="mt-5 text-sm text-ink-muted">Effective date: {EFFECTIVE_DATE}</p>
 
-        {/* Hero */}
-        <section className="rounded-[1.75rem] border border-zinc-300 bg-white px-6 py-10 sm:px-10 sm:py-14">
-          <div className="max-w-2xl">
-            <span className="inline-flex rounded-full border border-[#03BDE9]/20 bg-[#03BDE9]/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[#0287A8]">
-              Legal
-            </span>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight text-zinc-950 sm:text-5xl">
-              Privacy Policy
-            </h1>
-            <p className="mt-4 text-base leading-7 text-zinc-600 sm:text-lg sm:leading-8">
-              This policy explains what data Sycure collects, why we collect it,
-              and how it is used across the resident app, gate verifier app, and
-              estate owner dashboard.
-            </p>
-            <p className="mt-5 text-sm text-zinc-400">
-              Effective date: {EFFECTIVE_DATE}
+          {/* Contact callout */}
+          <div className="mt-8 rounded-card-lg border border-dashed border-border bg-surface px-6 py-5">
+            <p className="text-sm leading-6 text-ink-secondary">
+              <span className="font-semibold text-ink">Questions?</span> Contact our
+              privacy team at{" "}
+              <a
+                href="mailto:privacy@sycure.app"
+                className="font-medium text-brand-strong underline underline-offset-2 hover:text-brand"
+              >
+                privacy@sycure.app
+              </a>
+              . We aim to respond within 5 business days.
             </p>
           </div>
-        </section>
 
-        {/* Contact callout */}
-        <div className="rounded-[1.75rem] border border-dashed border-zinc-300 bg-white/60 px-6 py-5 sm:px-8">
-          <p className="text-sm leading-6 text-zinc-600">
-            <span className="font-semibold text-zinc-800">Questions?</span>{" "}
-            Contact our privacy team at{" "}
-            <a
-              href="mailto:privacy@sycure.app"
-              className="font-medium text-[#0287A8] underline underline-offset-2 transition hover:text-[#03BDE9]"
-            >
-              privacy@sycure.app
-            </a>
-            . We aim to respond within 5 business days.
-          </p>
-        </div>
+          {/* Policy sections */}
+          <div className="mt-6 grid gap-5">
+            {sections.map((section, sectionIndex) => (
+              <section
+                key={section.title}
+                className="rounded-card-lg border border-border bg-surface-elevated p-6 sm:p-8"
+              >
+                <div className="mb-6 flex items-start gap-4">
+                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-field bg-surface-sunken font-mono text-sm text-ink-muted">
+                    {sectionIndex + 1}
+                  </span>
+                  <h2 className="font-display text-xl text-ink sm:text-2xl">
+                    {section.title}
+                  </h2>
+                </div>
 
-        {/* Policy sections */}
-        <div className="grid gap-5">
-          {sections.map((section, sectionIndex) => (
-            <section
-              key={section.title}
-              className="rounded-[1.75rem] border border-zinc-200 bg-white p-6 sm:p-8"
-            >
-              <div className="mb-6 flex items-start gap-4">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-sm font-bold text-zinc-400">
-                  {sectionIndex + 1}
-                </span>
-                <h2 className="text-xl font-bold text-zinc-950 sm:text-2xl">
-                  {section.title}
-                </h2>
-              </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {section.content.map((item) => (
+                    <div
+                      key={item.heading}
+                      className="rounded-card border border-border-subtle bg-surface p-5"
+                    >
+                      <p className="mb-2 text-sm font-semibold text-ink">{item.heading}</p>
+                      <p className="text-sm leading-6 text-ink-secondary">{item.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                {section.content.map((item) => (
-                  <div
-                    key={item.heading}
-                    className="rounded-2xl border border-zinc-100 bg-zinc-50 p-5"
-                  >
-                    <p className="mb-2 text-sm font-semibold text-zinc-800">
-                      {item.heading}
-                    </p>
-                    <p className="text-sm leading-6 text-zinc-600">{item.body}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-
-        {/* Footer note */}
-        <div className="rounded-[1.75rem] border border-zinc-200 bg-white px-6 py-6 sm:px-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-400">
-            Governing law
-          </p>
-          <p className="mt-2 text-sm leading-6 text-zinc-600">
-            This Privacy Policy is governed by the laws of the Federal Republic
-            of Nigeria. Where applicable, Sycure complies with the Nigeria Data
-            Protection Act (NDPA) 2023 and any other relevant regional data
-            protection regulations that may apply to your use of the platform.
-          </p>
-        </div>
-
-        <SiteFooter />
-      </div>
-    </main>
+          {/* Governing law */}
+          <div className="mt-6 rounded-card-lg border border-border bg-surface-elevated px-6 py-6 sm:px-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-ink-muted">
+              Governing law
+            </p>
+            <p className="mt-2 text-sm leading-6 text-ink-secondary">
+              This Privacy Policy is governed by the laws of the Federal Republic
+              of Nigeria. Where applicable, Sycure complies with the Nigeria Data
+              Protection Act (NDPA) 2023 and any other relevant regional data
+              protection regulations that may apply to your use of the platform.
+            </p>
+          </div>
+        </Container>
+      </main>
+      <SiteFooter />
+    </>
   );
 }

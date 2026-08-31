@@ -12,7 +12,7 @@ export function PhoneFrame({ children, className, label }: FrameProps) {
   return (
     <div
       className={cn(
-        "relative mx-auto w-full max-w-[280px] rounded-[2.25rem] border border-border-strong bg-ink-surface p-2.5 shadow-float",
+        "relative mx-auto w-full max-w-70 rounded-[2.25rem] border border-border-strong bg-ink-surface p-2.5 shadow-float",
         className,
       )}
       role="img"

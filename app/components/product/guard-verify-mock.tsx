@@ -20,31 +20,27 @@ const CHECKS = [
 
 /** Guard view — verifying a scanned code at the gate. */
 export function GuardVerifyMock({ className, animate = false }: GuardVerifyMockProps) {
-  // step: 0 scanning · 1..3 checks resolving · 4 result
-  const [step, setStep] = useState(animate ? 0 : 4);
+  // step: 0 scanning · 1..3 checks resolving · 4 result.
+  // Starts at the resolved state so SSR + reduced-motion show the outcome;
+  // the effect rewinds to 0 and plays forward only when it should.
+  const [step, setStep] = useState(4);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!animate) return;
-
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      setStep(4);
-      return;
-    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const node = ref.current;
     if (!node) return;
 
-    let timers: ReturnType<typeof setTimeout>[] = [];
+    const timers: ReturnType<typeof setTimeout>[] = [];
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
           observer.disconnect();
-          timers = [400, 900, 1400, 1900].map((delay, i) =>
-            setTimeout(() => setStep(i + 1), delay),
+          setStep(0);
+          [400, 900, 1400, 1900].forEach((delay, i) =>
+            timers.push(setTimeout(() => setStep(i + 1), delay)),
           );
         }
       },

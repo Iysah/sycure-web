@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/app/components/primitives/container";
-import { FOOTER_GROUPS } from "@/app/lib/content";
+import { StoreBadges } from "@/app/components/primitives/store-badges";
+import { APP_STORES, FOOTER_GROUPS } from "@/app/lib/content";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -14,7 +15,7 @@ export function SiteFooter() {
             <Image
               src="/sycureLogoWhite.svg"
               alt="Sycure"
-              width={116}
+              width={129}
               height={32}
               className="h-8 w-auto"
             />
@@ -22,7 +23,8 @@ export function SiteFooter() {
               Estate access control for residential communities — pre-authorized
               visitors, verified entry, and a record of every gate decision.
             </p>
-            <p className="mt-4 text-xs text-white/40">
+            <StoreBadges items={APP_STORES} onDark height={40} className="mt-6" />
+            <p className="mt-6 text-xs text-white/40">
               Sycure Lab Limited · Digital Estate Management
             </p>
           </div>

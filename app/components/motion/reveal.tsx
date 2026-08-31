@@ -33,8 +33,8 @@ export function Reveal({ children, delay = 0, as: As = "div", className }: Revea
     if (!node || visible) return;
 
     if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
+      const id = setTimeout(() => setVisible(true), 0);
+      return () => clearTimeout(id);
     }
 
     const observer = new IntersectionObserver(

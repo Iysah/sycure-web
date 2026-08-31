@@ -1,7 +1,6 @@
-import { ShieldCheck } from "lucide-react";
+import { Bell, ShieldCheck } from "lucide-react";
 import { Container } from "@/app/components/primitives/container";
 import { ButtonLink } from "@/app/components/primitives/button";
-import { VisitorPassMock } from "@/app/components/product/visitor-pass-mock";
 import { GuardVerifyMock } from "@/app/components/product/guard-verify-mock";
 import { CTA } from "@/app/lib/content";
 
@@ -43,20 +42,14 @@ export function Hero() {
           </div>
 
           {/* Product */}
-          <div className="rounded-card-lg border border-border bg-surface p-5 sm:p-7">
-            <div className="grid gap-6 sm:grid-cols-2 sm:gap-4">
-              <div>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
-                  Resident creates a pass
-                </p>
-                <VisitorPassMock />
-              </div>
-              <div className="sm:translate-y-8">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
-                  Guard verifies at the gate
-                </p>
-                <GuardVerifyMock animate />
-              </div>
+          <div className="relative rounded-card-lg border border-border bg-surface p-6 sm:p-10">
+            <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
+              Verifying a visitor at the gate
+            </p>
+            <GuardVerifyMock animate className="max-w-75" />
+            <div className="pointer-events-none absolute -bottom-3 right-3 hidden items-center gap-2 rounded-pill border border-border bg-surface-elevated px-3.5 py-2 text-xs font-medium text-ink shadow-float sm:flex">
+              <Bell className="h-3.5 w-3.5 text-brand-strong" aria-hidden="true" />
+              Unit 14B notified
             </div>
           </div>
         </div>

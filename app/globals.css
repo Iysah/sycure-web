@@ -90,6 +90,7 @@ html {
 body {
   background-color: var(--color-background);
   color: var(--color-ink);
+  overflow-x: clip;
   font-family: var(--font-sans);
   font-feature-settings: "cv05" 1, "ss01" 1;
   -webkit-font-smoothing: antialiased;
@@ -126,8 +127,9 @@ p {
 /* ── Motion primitives ─────────────────────────────────────────────────────── */
 
 /* Scroll-reveal: elements start shifted + transparent, settle when .is-visible
-   is added by the Reveal component's IntersectionObserver. */
-.reveal {
+   is added by the Reveal component's IntersectionObserver. Gated on `.js` (set
+   by an inline script in the layout) so content is always visible without JS. */
+.js .reveal {
   opacity: 0;
   transform: translateY(14px);
   transition:
@@ -136,7 +138,7 @@ p {
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
 }
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
@@ -161,7 +163,7 @@ p {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal {
+  .js .reveal {
     opacity: 1;
     transform: none;
   }

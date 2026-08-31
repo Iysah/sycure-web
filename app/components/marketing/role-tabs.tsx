@@ -36,8 +36,6 @@ export function RoleTabs() {
     }
   };
 
-  const role = ROLES[active];
-
   return (
     <section id="roles" className="scroll-mt-24 py-20 lg:py-28">
       <Container>
