@@ -296,46 +296,69 @@ export const GATE_LOG_ROWS = [
    The wider platform — Sycure's direction, stated as direction
    ──────────────────────────────────────────────────────────────────────────── */
 
+export type PlatformStatus = "live" | "roadmap";
+
+export interface PlatformModule {
+  readonly title: string;
+  readonly body: string;
+  readonly icon: LucideIcon;
+  readonly status: PlatformStatus;
+}
+
 export const PLATFORM = {
   eyebrow: "The platform",
   heading: "The gate is where Sycure starts, not where it ends",
   body: "Sycure Estate is one app for living in a modern estate. Access control and emergency response are live today; more of estate life is moving in.",
-  live: {
-    label: "Live now",
-    items: [
-      {
-        title: "Visitor access control",
-        body: "Guest and event codes, gate verification, and the estate activity log.",
-        icon: ShieldCheck,
-      },
-      {
-        title: "Smart Emergency",
-        body: "An SOS alert that notifies estate security immediately, with health and fire options and local hotlines built in.",
-        icon: Siren,
-      },
-    ],
+  statusLabels: {
+    live: "Live now",
+    roadmap: "Rolling out",
   },
-  roadmap: {
-    label: "Rolling out",
-    items: [
-      {
-        title: "Utility payments",
-        body: "Estate managers define levies and utilities; residents pay and track them in-app.",
-        icon: Wallet,
-      },
-      {
-        title: "Estate communications",
-        body: "Structured announcements from management instead of scattered WhatsApp groups.",
-        icon: MessageSquare,
-      },
-      {
-        title: "Community marketplace",
-        body: "Vetted vendors and service providers reachable from inside participating estates.",
-        icon: Store,
-      },
-    ],
+  /** Rendered as a numbered grid; order is the displayed order (01, 02, …). */
+  modules: [
+    {
+      title: "Visitor access control",
+      body: "Guest and event codes, gate verification, and the estate activity log.",
+      icon: ShieldCheck,
+      status: "live",
+    },
+    {
+      title: "Smart Emergency",
+      body: "An SOS alert that notifies estate security immediately, with health and fire options and local hotlines built in.",
+      icon: Siren,
+      status: "live",
+    },
+    {
+      title: "Utility payments",
+      body: "Estate managers define levies and utilities; residents pay and track them in-app.",
+      icon: Wallet,
+      status: "roadmap",
+    },
+    {
+      title: "Estate communications",
+      body: "Structured announcements from management instead of scattered WhatsApp groups.",
+      icon: MessageSquare,
+      status: "roadmap",
+    },
+    {
+      title: "Community marketplace",
+      body: "Vetted vendors and service providers reachable from inside participating estates.",
+      icon: Store,
+      status: "roadmap",
+    },
+  ],
+  cta: {
+    eyebrow: "Bring Sycure to your estate",
+    label: "Request a demo",
+    href: "/demo",
   },
-} as const;
+} as const satisfies {
+  eyebrow: string;
+  heading: string;
+  body: string;
+  statusLabels: Record<PlatformStatus, string>;
+  modules: readonly PlatformModule[];
+  cta: { eyebrow: string; label: string; href: string };
+};
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Use cases
