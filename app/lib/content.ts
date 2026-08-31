@@ -331,7 +331,7 @@ export const PLATFORM = {
       title: "Utility payments",
       body: "Estate managers define levies and utilities; residents pay and track them in-app.",
       icon: Wallet,
-      status: "roadmap",
+      status: "live",
     },
     {
       title: "Estate communications",
