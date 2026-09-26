@@ -40,12 +40,21 @@ export const metadata: Metadata = {
     title: "Sycure — Secure estate access control",
     description:
       "One system for residents, guards, and estate managers. Know who enters your estate, when, and who approved it.",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Sycure Estate — Know who enters. Stay in control.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sycure — Secure estate access control",
     description:
       "One system for residents, guards, and estate managers. Know who enters your estate, when, and who approved it.",
+    images: ["/opengraph-image.png"],
   },
 };
 
