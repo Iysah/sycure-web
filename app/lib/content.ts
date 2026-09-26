@@ -452,6 +452,7 @@ export const FOOTER_GROUPS = [
       { label: "Request a demo", href: "/demo" },
       { label: "FAQ", href: "#faq" },
       { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms and Conditions", href: "/terms" },
     ],
   },
 ] as const;
