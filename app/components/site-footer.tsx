@@ -52,11 +52,16 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-ink-line pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-ink-line pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} Sycure. All rights reserved.</p>
-          <Link href="/privacy" className="transition-colors hover:text-white/70">
-            Privacy Policy
-          </Link>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link href="/privacy" className="transition-colors hover:text-white/70">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="transition-colors hover:text-white/70">
+              Terms and Conditions
+            </Link>
+          </div>
         </div>
       </Container>
     </footer>
