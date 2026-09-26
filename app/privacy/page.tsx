@@ -184,10 +184,10 @@ export default function PrivacyPage() {
               <span className="font-semibold text-ink">Questions?</span> Contact our
               privacy team at{" "}
               <a
-                href="mailto:privacy@sycure.app"
+                href="mailto:privacy@sycureestate.com"
                 className="font-medium text-brand-strong underline underline-offset-2 hover:text-brand"
               >
-                privacy@sycure.app
+                privacy@sycureestate.com
               </a>
               . We aim to respond within 5 business days.
             </p>
