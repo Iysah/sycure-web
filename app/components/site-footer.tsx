@@ -55,6 +55,7 @@ export function SiteFooter() {
         <div className="mt-12 flex flex-col gap-3 border-t border-ink-line pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} Sycure. All rights reserved.</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <p>Engineered by Zorfts</p>
             <Link href="/privacy" className="transition-colors hover:text-white/70">
               Privacy Policy
             </Link>
